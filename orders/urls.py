@@ -1,13 +1,13 @@
 from django.urls import path
-
-from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
 
 from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
-    url(r'^signup/$', core_views.signup, name='signup'),
+    path(r'^login/$', auth_views.LoginView.as_view(template_name='orders/login.html'), name='login'),
+    path(r'^logout/$', auth_views.LogoutView.as_view(next_page='my_login'), name='logout'),
+    path(r'^menu/$', views.show_menu, name='menu'),
+    #url(r'^signup/$', core_views.signup, name='signup'),
 ]

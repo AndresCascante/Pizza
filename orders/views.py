@@ -3,11 +3,11 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth import login, authenticate
 
-from .models import SignUpForm
+from .forms import SignUpForm
 
 # Create your views here.
 def index(request):
-    return render(request,"orders/home.html")
+    return render(request, "orders/home.html")
 
 def signup(request):
     if request.method == 'POST':
@@ -22,3 +22,7 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+def show_menu(request):
+    return render(request, "orders/menu.html")
